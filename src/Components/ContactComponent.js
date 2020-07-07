@@ -1,7 +1,35 @@
-import React from 'react';
-import {Breadcrumb,BreadcrumbItem} from 'reactstrap'
+import React, { Component } from 'react';
+import {Breadcrumb,BreadcrumbItem,Button,Form,FormGroup,Input,Label,Col} from 'reactstrap'
 import {Link} from 'react-router-dom'
-function Contact(props) {
+
+
+class Contact extends Component {
+
+    constructor(props){
+        super (props);
+        this.state = {
+                firstname:"",
+                lastname:"",
+                telnum:"",
+                email:"",
+                agree:"",
+                contacttype:"Tel.",
+                message:""
+        }      
+    }
+    
+ HandleChange=(event) =>{
+     const target=event.target;
+     const value= target.type==="checked" ? target.checked:target.value;
+     const name= target.name;
+        this.setState({[name]:value });
+  }
+  HandleSubmit=(event)=>{
+      console.log("current state is: "+ JSON.stringify(this.state));
+      alert("current state is: "+ JSON.stringify(this.state));
+      event.preventDefault();
+      }
+    render(){
     return(
         <div className="container">
             <div className="row">
@@ -41,8 +69,83 @@ function Contact(props) {
                     </div>
                 </div>
             </div>
+            <div className="row row-content">
+                <div className="col-12">
+                    <h1>send us your feedback</h1>
+                </div>
+                <div className="col-12 col-md-9">
+                    <Form onSubmit={this.HandleSubmit}>
+                        <FormGroup row>
+                            <Label for="firstname" md={2}>First Name</Label>
+                            <Col md={10}>
+                                <Input type="text" id="firstname"
+                                 name="firstname" placeholder="first name"  
+                                 value={this.state.firstname} onChange={this.HandleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="lastname" md={2}>Last Name</Label>
+                            <Col md={10}>
+                                <Input type="text" id="lastname"
+                                 name="lastname" placeholder="last name"  
+                                 value={this.state.lastname} onChange={this.HandleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="telnum" md={2}>Telephone Number</Label>
+                            <Col md={10}>
+                                <Input type="text" id="telnum"
+                                 name="telnum" placeholder="Telephone Number"  
+                                 value={this.state.telnum} onChange={this.HandleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="email" md={2}>Email</Label>
+                            <Col md={10}>
+                                <Input type="email" id="email"
+                                 name="email" placeholder="Email"  
+                                 value={this.state.email} onChange={this.HandleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md={{size: 6,offset:2}}>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" name="agree" checked={this.state.agree}
+                                         onChange={this.HandleChange}/> {"  "}
+                                        <strong>May we contact you ?</strong>
+                                    </Label>
+                                </FormGroup>
+                            </Col>
+                            <Col md={{size: 3,offset:1}}>
+                                <Input type="select" name="contacttype" value={this.state.contacttype}
+                                 onChange={this.HandleChange}>
+                                    <option>Tel.</option>
+                                    <option>Email</option>
+                                </Input>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="feedback" md={2}>Your feedback</Label>
+                            <Col md={10}>
+                                <Input type="textarea" id="message"
+                                 name="message" rows="12"  
+                                 value={this.state.message} onChange={this.HandleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Col md={{ size : 10 , offset : 2 }}>
+                                <Button type="submit" color="primary" >
+                                    Send feedback
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </div>
+            </div>
         </div>
-    );
+    );}
 }
 
 export default Contact;
