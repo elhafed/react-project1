@@ -63,7 +63,7 @@ const errors={
             {
                 errors.telnum="the phone number should contain only numbers";
             }
-            if(this.state.touched.email&& email.split('').filter((x)=>x==='@').length!=1)
+            if(this.state.touched.email&& email.split('').filter((x)=>x==='@').length!==1)
             {
                 errors.email="email should contain one @";
             }
@@ -124,7 +124,7 @@ return errors;
                                  name="firstname" placeholder="first name"  
                                  value={this.state.firstname} 
                                  valid={errors.firstname===''}
-                                 invalid={errors.firstname!=''}
+                                 invalid={errors.firstname!==''}
                                  onBlur={this.HandleBlur('firstname')}
                                  onChange={this.HandleChange}/>
                                  <FormFeedback>{errors.firstname}</FormFeedback>
@@ -137,7 +137,7 @@ return errors;
                                  name="lastname" placeholder="last name"  
                                  value={this.state.lastname} onBlur={this.HandleBlur('lastname')}
                                  valid={errors.lastname===''}
-                                 invalid={errors.lastname!=''}
+                                 invalid={errors.lastname!==''}
                                  onChange={this.HandleChange}/>
                                 <FormFeedback>{errors.lastname}</FormFeedback>
                             </Col>
@@ -149,7 +149,7 @@ return errors;
                                  name="telnum" placeholder="Telephone Number"  
                                  value={this.state.telnum} onBlur={this.HandleBlur('telnum')}
                                  valid={errors.telnum===''}
-                                 invalid={errors.telnum!=''}
+                                 invalid={errors.telnum!==''}
                                  onChange={this.HandleChange}/>
                                  <FormFeedback>{errors.telnum}</FormFeedback>
                             </Col>
@@ -161,7 +161,7 @@ return errors;
                                  name="email" placeholder="Email"  
                                  value={this.state.email}onBlur={this.HandleBlur('email')}
                                  valid={errors.email===''}
-                                 invalid={errors.email!=''}
+                                 invalid={errors.email!==''}
                                 onChange={this.HandleChange}/>
                                  <FormFeedback>{errors.email}</FormFeedback>
                             </Col>
