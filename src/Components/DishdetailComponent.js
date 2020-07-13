@@ -22,6 +22,10 @@ class CommentForm extends Component {
                 isModalOpen:!this.state.isModalOpen
             })
         }
+        HandleSubmit=(values)=>{
+            this.toggleModal();
+            this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
+        }
     render() {
         return (
 
@@ -82,7 +86,7 @@ class CommentForm extends Component {
                             <Row className="form-group">
                                 <Col md={{size:10, offset: 2}}>
                                     <Button type="submit" color="primary">
-                                    Send Feedback
+                                    submit
                                     </Button>
                                 </Col>
                             </Row>
@@ -95,7 +99,7 @@ class CommentForm extends Component {
     }
 }
 
-function RenderComments({comments}){
+function RenderComments({comments,addComment,dishId}){
 
     return (                
     <div  className="col-12 col-md-5 m-1">
@@ -110,7 +114,7 @@ function RenderComments({comments}){
                     </div>
                 })}
             </CardText>
-            <CommentForm />
+            <CommentForm dishId={dishId} addComment={addComment}/>
         </CardBody>
       </Card>
     </div>)
@@ -144,7 +148,7 @@ console.log("i did pass")
             </div>
                     <div className="row">
                          <RenderDish dish={props.dish}/>
-                         <RenderComments comments={props.comments}/>
+                         <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id}/>
                     </div>
                 </div>)
             }
