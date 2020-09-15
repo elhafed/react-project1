@@ -12,10 +12,11 @@ import { InitialFeedback } from './forms';
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
+            leaders: Leaders,
             dishes: Dishes,
             comments: Comments,
             promotions: Promotions,
-            leaders: Leaders,
+           
             ...createForms({
                 feedback: InitialFeedback
             })
